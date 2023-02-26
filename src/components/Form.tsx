@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import supabase from "../configs/supabase";
+import { useUser } from "../contexts/AuthContext";
 import useMultiForm from "../hooks/useMultiForm";
 import { waifuInfo } from "../utils/dummyData";
 import AddComment from "./AddComment";
@@ -22,24 +23,41 @@ const Form = () => {
     })
   );
 
-
   const [currentPage, setCurrentPage] = useState(goToPage(step));
+  const user = useUser();
 
+  console.log(user);
 
   return (
     <div className="">
-      <Link to={"/login"}>
-        <Button classNames="bg-red-500">Login</Button>
-      </Link>
+      {!user ? (
+        <Link to={"/login"}>
+          <Button classNames="bg-red-500">Login</Button>
+        </Link>
+      ) : (
+        <div>
+          <img
+            className="w-20 h-20"
+            src={user?.user_metadata?.avatar_url}
+            alt=""
+          />
+          <Button
+            classNames="bg-red-600"
+            onClick={async () => {
+              await supabase.auth.signOut();
+              window.location.reload();
+            }}
+          >
+            Sign Out
+          </Button>
+        </div>
+      )}
       <div className="flex justify-around items-center">
         <div className="w-[400px]">
           <div className="text-white px-10">
             {step}/{steps.length - 1}
           </div>
-          <div className="mt-3 min-h-[200px] ">
-            {currentPage}
-
-          </div>
+          <div className="mt-3 min-h-[200px] ">{currentPage}</div>
 
           <div className="m-6">
             <Button

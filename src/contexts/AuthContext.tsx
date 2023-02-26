@@ -1,20 +1,27 @@
+import { User } from "@supabase/supabase-js";
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import supabase from "../configs/supabase";
 
-export const AuthContext = () => {
-  const [user, setUser] = useState();
+const AuthContext = createContext({} as User | null | undefined);
 
-  async function signInWithGoogle() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-  }
-  async function signInWithDiscord() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "discord",
-    });
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState({} as User | null | undefined);
+
+  async function getUser() {
+    const { data, error } = await supabase.auth.getUser();
+    setUser(data.user);
   }
 
-  return <div>AuthContext</div>;
+  console.log(user);
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+};
+
+export const useUser = () => {
+  return React.useContext(AuthContext);
 };

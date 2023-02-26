@@ -1,9 +1,17 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Button from "./Button";
 import { waifuInfo } from "../utils/dummyData";
 import { ToastProps, WaifuProps } from "../types/data";
 import { ToastContext } from "../contexts/ToastContext";
 import supabase from "../configs/supabase";
+import { addComment } from "../api/comment";
+import { useUser } from "../contexts/AuthContext";
 
 function Comment() {
   const userRef = useRef<HTMLInputElement>(null);
@@ -12,19 +20,26 @@ function Comment() {
   const { toggle, changeToggle, changeText } = useContext(
     ToastContext
   ) as ToastProps;
-  //   const
+  const user = useUser();
 
-  console.log(userRef.current?.value);
+  // console.log(userRef.current?.value);
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
     if (comment) {
       waifuInfo.push(comment);
       console.log(waifuInfo);
       changeToggle(true);
       changeText("Thêm bình luận thành công");
+      // addComment(comment);
     }
   }
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      changeToggle(false)
+    },2000)
+  },[toggle])
 
   function handleChange() {
     setComment({
@@ -39,7 +54,7 @@ function Comment() {
   console.log(waifuInfo);
 
   return (
-    <div className="w-[500px] min-h-[300px] bg-[#232323] z-50 top-0 py-4 px-10">
+    <div className="w-[500px] min-h-[300px] bg-[#232323] z-50 top-0 py-4 px-10 rounded-lg">
       <form
         onSubmit={handleSubmit}
         method="post"
