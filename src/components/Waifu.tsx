@@ -8,9 +8,8 @@ import supabase from "../configs/supabase";
 import { useQuery } from "@tanstack/react-query";
 import { EmojiProps, ToastProps, WaifuProps } from "../types/data";
 import { useUser } from "../contexts/AuthContext";
-import { GrFormClose } from "react-icons/gr";
 import Avatar from "./Avatar";
-import { PostgrestClient } from "@supabase/postgrest-js";
+import postgrest from "../configs/postgrest";
 
 const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   const [toggleIcon, setToggleIcon] = useState(false);
@@ -19,7 +18,10 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
     ToastContext
   ) as ToastProps;
 
-  const user = useUser();
+
+  // console.log(postgrest.from("sce_reactions").select("*"))
+
+
 
   function handleLike() {
     setToggleIcon(!toggleIcon);
@@ -47,6 +49,8 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
     queryKey: ["emoji"],
     queryFn: () => supabase.from("sce_reactions").select("*"),
   });
+
+  // console.log(emoji)
 
   console.log(emoji);
 

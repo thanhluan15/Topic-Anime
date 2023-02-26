@@ -15,7 +15,7 @@ const Form = () => {
     waifuInfo.map((i, index) => {
       return (
         <Waifu
-          key={waifuInfo[index].id}
+          key={index}
           waifuName={waifuInfo[index].waifuName}
           src={waifuInfo[index].src}
           comment={waifuInfo[index].comment}

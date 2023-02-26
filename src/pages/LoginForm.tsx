@@ -36,21 +36,21 @@ const Login = () => {
           <div className="text-[40px] font-bold text-white">ĐĂNG NHẬP</div>
         </div>
         <Button
-          classNames="bg-purple-500 w-[17rem] rounded-sm text-white flex justify-center items-center gap-4"
+          classNames="bg-purple-600 w-[17rem] rounded-sm text-white flex justify-center items-center gap-4 hover:bg-purple-800"
           onClick={signInWithDiscord}
         >
-          <SiDiscord className="text-2xl"></SiDiscord>
+          <SiDiscord className="text-2xl "></SiDiscord>
           <span>Login with Discord</span>
         </Button>
         <Button
-          classNames="bg-white w-[17rem] text-black rounded-sm flex justify-center items-center gap-4"
+          classNames="bg-white w-[17rem] text-black rounded-sm flex justify-center items-center gap-4 hover:bg-slate-300"
           onClick={signInWithGithub}
         >
           <BsGithub className="text-2xl"></BsGithub>
           <span>Login with GitHub</span>
         </Button>
         <Button
-          classNames="bg-red-800 w-[17rem] rounded-sm text-white flex justify-center items-center gap-4"
+          classNames="bg-red-700 w-[17rem] rounded-sm text-white flex justify-center items-center gap-4 hover:bg-red-900"
           onClick={signInWithGoogle}
         >
           <FcGoogle className="text-2xl"></FcGoogle>
@@ -60,6 +60,5 @@ const Login = () => {
     </div>
   );
 };
-
 
 export default Login;

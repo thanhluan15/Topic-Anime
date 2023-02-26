@@ -15,7 +15,7 @@ function ToastMessage({ text }: { time: number; text: ReactElement | string }) {
 
   return (
     <div>
-      <div className="w-[20rem] h-12 rounded-lg bg-black text-white z-[100] fixed top-24 right-8 font-semibold text-center flex items-center justify-center">
+      <div className="w-[20rem] h-12 rounded-lg bg-black text-white z-[100] fixed top-20 right-8 font-semibold text-center flex items-center justify-center">
         {text}
         <IconContext.Provider value={{ color: "black" }}>
           <GrFormClose

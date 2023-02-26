@@ -5,8 +5,6 @@ import ToastMessage from "./components/Toast";
 import { ToastContext } from "./contexts/ToastContext";
 import MultiForm from "./pages/MultiForm";
 import { ToastContainer } from "react-toastify";
-import Button from "./components/Button";
-import EmojiPicker from "emoji-picker-react";
 
 interface ToastProps {
   toggle: boolean;
@@ -26,7 +24,6 @@ function App() {
       </Routes>
       {toggle ? <ToastMessage text={text} time={2000} /> : <></>}
       <ToastContainer />
-      {/* <EmojiPicker theme="dark" /> */}
     </div>
   );
 }

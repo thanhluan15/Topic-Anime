@@ -23,7 +23,7 @@ function useMultiForm(steps: ReactElement[]) {
     return steps[step];
   }
 
-  console.log(step);
+  // console.log(step);
   return { step, steps, nextPage, prevPage, goToPage };
 }
 
