@@ -1,5 +1,4 @@
 import { User } from "@supabase/supabase-js";
-import { useQuery } from "@tanstack/react-query";
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import supabase from "../configs/supabase";
 

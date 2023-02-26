@@ -3,7 +3,7 @@ import Form from "../components/Form";
 
 const MultiForm = () => {
   return (
-    <div>
+    <div className="w-full relative top-0">
       <Form></Form>
     </div>
   );

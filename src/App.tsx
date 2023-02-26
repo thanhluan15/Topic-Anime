@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { Route, Routes, Link } from "react-router-dom";
-import Login from "./components/LoginForm";
+import Login from "./pages/LoginForm";
 import ToastMessage from "./components/Toast";
 import { ToastContext } from "./contexts/ToastContext";
 import MultiForm from "./pages/MultiForm";

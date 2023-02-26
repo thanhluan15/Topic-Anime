@@ -1,5 +1,5 @@
 import supabase from "../configs/supabase";
-import Button from "./Button";
+import Button from "../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { SiDiscord } from "react-icons/si";
 import { BsGithub } from "react-icons/bs";

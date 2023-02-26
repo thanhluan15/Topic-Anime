@@ -6,9 +6,12 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-const Button = ({ children, classNames, onClick, ...prop }: ButtonProps) => {
+const Button = ({ children, classNames, onClick, ...props }: ButtonProps) => {
   return (
-    <button className={`h-10 w-20 font-semibold ${classNames}`} onClick={onClick}>
+    <button
+      className={`h-10 w-20 font-semibold ${classNames}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

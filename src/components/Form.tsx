@@ -5,6 +5,7 @@ import { useUser } from "../contexts/AuthContext";
 import useMultiForm from "../hooks/useMultiForm";
 import { waifuInfo } from "../utils/dummyData";
 import AddComment from "./AddComment";
+import Avatar from "./Avatar";
 import Button from "./Button";
 import Waifu from "./Waifu";
 import WaifuList from "./WaifuList";
@@ -29,35 +30,48 @@ const Form = () => {
   console.log(user);
 
   return (
-    <div className="">
-      {!user ? (
-        <Link to={"/login"}>
-          <Button classNames="bg-red-500">Login</Button>
-        </Link>
-      ) : (
-        <div>
-          <img
-            className="w-20 h-20"
-            src={user?.user_metadata?.avatar_url}
-            alt=""
-          />
-          <Button
-            classNames="bg-red-600"
-            onClick={async () => {
-              await supabase.auth.signOut();
-              window.location.reload();
-            }}
-          >
-            Sign Out
-          </Button>
-        </div>
-      )}
-      <div className="flex justify-around items-center">
+    <div className="w-full">
+      <div className="flex justify-between items-center h-20 bg-transparent w-full fixed top-0 z-[99999] border-behind ">
+        <h1 className="text-white ml-16 font-bold text-lg">MARU</h1>
+        {!user ? (
+          <Link to={"/login"}>
+            <Button classNames="bg-red-500 text-white mr-8">Login</Button>
+          </Link>
+        ) : (
+          <div className="flex mr-8 items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Avatar
+                classNames=""
+                src={user?.user_metadata?.avatar_url}
+                alt=""
+              />
+              <p className="text-white font-semibold">
+                {user?.user_metadata?.name}
+              </p>
+            </div>
+
+            <Button
+              classNames="bg-red-600 text-white rounded-sm"
+              onClick={async () => {
+                await supabase.auth.signOut();
+                window.location.reload();
+              }}
+            >
+              Sign Out
+            </Button>
+          </div>
+        )}
+      </div>
+      <div className="flex justify-around items-center mt-24">
         <div className="w-[400px]">
           <div className="text-white px-10">
-            {step}/{steps.length - 1}
+            Page: {step}/{steps.length - 1}
           </div>
-          <div className="mt-3 min-h-[200px] ">{currentPage}</div>
+          <div>
+            <div className="mt-3 h-[250px] mb-20">
+              <div className="mt-3 h-[100px] mb-20">{currentPage}</div>
+            </div>
+          </div>
 
           <div className="m-6">
             <Button

@@ -9,78 +9,82 @@ import Button from "./Button";
 import { waifuInfo } from "../utils/dummyData";
 import { ToastProps, WaifuProps } from "../types/data";
 import { ToastContext } from "../contexts/ToastContext";
-import supabase from "../configs/supabase";
-import { addComment } from "../api/comment";
 import { useUser } from "../contexts/AuthContext";
+import { AiFillCheckCircle } from "react-icons/ai";
 
 function Comment() {
-  const userRef = useRef<HTMLInputElement>(null);
-  const commentRef = useRef<HTMLTextAreaElement>(null);
+  const [username, setUserName] = useState("");
+  const [content, setContent] = useState("");
+  let commentRef = useRef<HTMLTextAreaElement>(null);
   const [comment, setComment] = useState({} as any);
   const { toggle, changeToggle, changeText } = useContext(
     ToastContext
   ) as ToastProps;
+
   const user = useUser();
 
-  // console.log(userRef.current?.value);
+  console.log(content);
+
+  useEffect(() => {
+    setUserName(user?.user_metadata?.name);
+  }, [user]);
 
   function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (comment) {
-      waifuInfo.push(comment);
-      console.log(waifuInfo);
+    if (content != "") {
+      waifuInfo.push({
+        id: Math.random() * 100,
+        waifuName: username,
+        src: user?.user_metadata?.avatar_url,
+        comment: content,
+      });
+      setContent("");
+
       changeToggle(true);
-      changeText("Thêm bình luận thành công");
-      // addComment(comment);
+      changeText(
+        <div className="flex">
+          Thêm bình luận thành công
+          <AiFillCheckCircle className="text-green-500 border-spacing-5 ml-2 text-[22px]" />
+        </div>
+      );
+    } else {
+      changeToggle(true);
+      changeText(<div>Vui lòng nhập bình luận</div>);
     }
   }
 
-  useEffect(()=>{
-    setTimeout(()=>{
-      changeToggle(false)
-    },2000)
-  },[toggle])
-
-  function handleChange() {
-    setComment({
-      id: crypto.randomUUID(),
-      waifuName: userRef.current?.value,
-      src: "",
-      comment: commentRef.current?.value,
-    });
-  }
-
-  console.log(comment);
-  console.log(waifuInfo);
-
   return (
-    <div className="w-[500px] min-h-[300px] bg-[#232323] z-50 top-0 py-4 px-10 rounded-lg">
-      <form
-        onSubmit={handleSubmit}
-        method="post"
-        className="flex flex-col justify-center  gap-2"
-      >
-        <label className="text-white font-semibold" htmlFor="name">
-          Name
-        </label>
-        <input
-          className="outline-none w-full h-4 p-4 rounded-md"
-          type="text"
-          id="name"
-          ref={userRef}
-          onChange={handleChange}
-        />
-        <label className="text-white font-semibold" htmlFor="comment">
-          Comment
-        </label>
-        <textarea
-          className="outline-none w-full h-[100px] p-4 rounded-md"
-          id="comment"
-          ref={commentRef}
-          onChange={handleChange}
-        />
-        <Button classNames="bg-white mt-3 rounded-lg mx-auto">Submit</Button>
-      </form>
+    <div className="w-full">
+      <div className="w-[500px] min-h-[300px] border-frame bg-[#232323] z-50 py-4 px-10 rounded-lg ">
+        <form
+          onSubmit={handleSubmit}
+          method="post"
+          className="flex flex-col justify-center  gap-2"
+        >
+          <label className="text-white font-semibold" htmlFor="name">
+            Name
+          </label>
+          <input
+            className="outline-none w-full h-4 p-4 rounded-md"
+            type="text"
+            id="name"
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          <label className="text-white font-semibold" htmlFor="comment">
+            Comment
+          </label>
+          <textarea
+            className="outline-none w-full h-[100px] p-4 rounded-md"
+            id="comment"
+            value={content}
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
+          />
+          <Button classNames="bg-white mt-3 rounded-lg mx-auto">Submit</Button>
+        </form>
+      </div>
     </div>
   );
 }
