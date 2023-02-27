@@ -5,6 +5,7 @@ import React, {
   useContext,
   useState,
 } from "react";
+import { ToastProps } from "../types/data";
 
 export const ToastContext = createContext({});
 
@@ -26,5 +27,9 @@ function ToastProvider({ children }: { children: ReactNode }) {
     </ToastContext.Provider>
   );
 }
+
+export const useToast = () => {
+  return useContext(ToastContext) as ToastProps;
+};
 
 export default ToastProvider;

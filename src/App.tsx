@@ -2,9 +2,8 @@ import { useContext, useRef, useState } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import Login from "./pages/LoginForm";
 import ToastMessage from "./components/Toast";
-import { ToastContext } from "./contexts/ToastContext";
 import MultiForm from "./pages/MultiForm";
-import { ToastContainer } from "react-toastify";
+import { useToast } from "./contexts/ToastContext";
 
 interface ToastProps {
   toggle: boolean;
@@ -13,7 +12,7 @@ interface ToastProps {
 }
 
 function App() {
-  const { toggle, text } = useContext(ToastContext) as ToastProps;
+  const { toggle, text } = useToast();
 
   console.log(toggle);
   return (
@@ -22,8 +21,7 @@ function App() {
         <Route path="/" element={<MultiForm />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      {toggle ? <ToastMessage text={text} time={2000} /> : <></>}
-      <ToastContainer />
+      {toggle ? <ToastMessage text={text} time={3000} /> : <></>}
     </div>
   );
 }

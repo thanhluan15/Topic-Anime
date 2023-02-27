@@ -8,20 +8,16 @@ import supabase from "../configs/supabase";
 import { useQuery } from "@tanstack/react-query";
 import { EmojiProps, ToastProps, WaifuProps } from "../types/data";
 import { useUser } from "../contexts/AuthContext";
-import Avatar from "./Avatar";
+import Avatar from "./shared/Avatar";
 import { PostgrestQueryBuilder } from "@supabase/postgrest-js";
 import { EmojiResponseSupabase } from "../types/supabase";
+import { useToast } from "../contexts/ToastContext";
 
 const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   const [toggleIcon, setToggleIcon] = useState(false);
-  const [emoji, setEmoji] = useState<>([]);
-  const [toggleComment, setToggleComment] = useState(false);
-  const { toggle, changeToggle, changeText } = useContext(
-    ToastContext
-  ) as ToastProps;
-  const imgRef = useRef();
-
-  console.log(imgRef)
+  const [emoji, setEmoji] = useState() as EmojiProps[];
+  const [toggleComment, setToggleComment] = useState(false) ;
+  const { toggle, changeToggle, changeText } = useToast();
 
   // console.log(postgrest.from("sce_reactions").select("*"))
 
@@ -52,9 +48,7 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   }
 
   async function getEmojis() {
-    const data: any = await supabase
-      .from("sce_reactions")
-      .select("*");
+    const data: any = await supabase.from("sce_reactions").select("*");
     setEmoji(data);
   }
 
@@ -105,7 +99,10 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
           {emoji?.data?.map((i: EmojiProps, index: number) => {
             return (
               <div key={index}>
-                <img className="w-5 h-5 cursor-pointer" ref={imgRef} src={i?.url} />
+                <img
+                  className="w-5 h-5 cursor-pointer"
+                  src={i?.url}
+                />
               </div>
             );
           })}

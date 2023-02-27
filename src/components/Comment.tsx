@@ -5,44 +5,48 @@ import React, {
   useRef,
   useState,
 } from "react";
-import Button from "./Button";
+import Button from "./shared/Button";
 import { waifuInfo } from "../utils/dummyData";
-import { ToastProps, WaifuProps } from "../types/data";
-import { ToastContext } from "../contexts/ToastContext";
 import { useUser } from "../contexts/AuthContext";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { useToast } from "../contexts/ToastContext";
 
 function Comment() {
   const [username, setUserName] = useState("");
   const [content, setContent] = useState("");
-  let commentRef = useRef<HTMLTextAreaElement>(null);
-  const [comment, setComment] = useState({} as any);
-  const { toggle, changeToggle, changeText } = useContext(
-    ToastContext
-  ) as ToastProps;
+  const { changeToggle, changeText } = useToast();
+
+  const [open, setOpen] = useState(false);
+  const commentRef = useRef<HTMLDivElement>();
 
   const user = useUser();
 
-  console.log(content);
+  console.log(waifuInfo);
 
   useEffect(() => {
     setUserName(user?.user_metadata?.name);
   }, [user]);
 
-  function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (content != "") {
+  window.onkeydown = (e) => {
+    if (e.key === "Enter") {
+      handleForm();
+      e.preventDefault();
+
+    }
+  };
+
+  function handleForm() {
+    if (content != "" || content === undefined) {
       waifuInfo.push({
-        id: Math.random() * 100,
+        id: Math.floor(Math.random() * 100),
         waifuName: username,
         src: user?.user_metadata?.avatar_url,
         comment: content,
       });
       setContent("");
-
       changeToggle(true);
       changeText(
-        <div className="flex">
+        <div className="flex items-center">
           Thêm bình luận thành công
           <AiFillCheckCircle className="text-green-500 border-spacing-5 ml-2 text-[22px]" />
         </div>
@@ -53,11 +57,24 @@ function Comment() {
     }
   }
 
+  function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault();
+    handleForm();
+  }
+
   return (
     <div className="w-full">
-      <div className="w-[500px] min-h-[300px] border-frame bg-[#232323] z-50 py-4 px-10 rounded-lg ">
+      <div
+        className={`w-[500px] min-h-[300px] border-frame bg-[#232323] z-50 py-4 px-10 rounded-lg ${
+          open ? "hidden" : ""
+        }`}
+      >
         <form
           onSubmit={handleSubmit}
+          onClick={() => {
+            setOpen(false);
+            console.log("axxx");
+          }}
           method="post"
           className="flex flex-col justify-center  gap-2"
         >

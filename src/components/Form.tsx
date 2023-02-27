@@ -5,8 +5,9 @@ import { useUser } from "../contexts/AuthContext";
 import useMultiForm from "../hooks/useMultiForm";
 import { waifuInfo } from "../utils/dummyData";
 import AddComment from "./AddComment";
-import Avatar from "./Avatar";
-import Button from "./Button";
+import Avatar from "./shared/Avatar";
+import Button from "./shared/Button";
+import { useToast } from "../contexts/ToastContext";
 import Waifu from "./Waifu";
 import WaifuList from "./WaifuList";
 
@@ -25,7 +26,26 @@ const Form = () => {
   );
 
   const [currentPage, setCurrentPage] = useState(goToPage(step));
+  const { changeText, changeToggle } = useToast();
   const user = useUser();
+
+  // useEffect(() => {
+  //   if (user) {
+  //     changeText(<div>Login Successfull</div>);
+  //     changeToggle(true);
+  //   }
+  //   else{
+  //     changeText(<></>)
+  //     changeToggle(false);
+  //   }
+  // }, [user]);
+
+  async function signOut() {
+    await supabase.auth.signOut();
+    window.location.reload();
+    changeText(<div>Logout successfull</div>);
+    changeToggle(true);
+  }
 
   console.log(user);
 
@@ -50,13 +70,7 @@ const Form = () => {
               </p>
             </div>
 
-            <Button
-              classNames="bg-red-600 text-white rounded-sm"
-              onClick={async () => {
-                await supabase.auth.signOut();
-                window.location.reload();
-              }}
-            >
+            <Button classNames="bg-red-600 text-white rounded-sm" onClick={signOut}>
               Sign Out
             </Button>
           </div>

@@ -1,24 +1,39 @@
 import supabase from "../configs/supabase";
-import Button from "../components/Button";
+import Button from "../components/shared/Button";
 import { FcGoogle } from "react-icons/fc";
 import { SiDiscord } from "react-icons/si";
 import { BsGithub } from "react-icons/bs";
+import { useToast } from "../contexts/ToastContext";
 
 const Login = () => {
+  const { changeText, changeToggle } = useToast();
+
   async function signInWithGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
+    if (data) {
+      changeToggle(true);
+      changeText(<div>Login Successful</div>);
+    }
   }
   async function signInWithDiscord() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "discord",
     });
+    if (data) {
+      changeToggle(true);
+      changeText(<div>Login Successful</div>);
+    }
   }
   async function signInWithGithub() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "github",
     });
+    if (data) {
+      changeToggle(true);
+      changeText(<div>Login Successful</div>);
+    }
   }
   return (
     <div className="w-full h-[625px] bg-white flex rounded-full relative">

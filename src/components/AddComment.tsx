@@ -4,12 +4,20 @@ import { IconContext } from "react-icons";
 import Comment from "./Comment";
 import { useUser } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { useToast } from "../contexts/ToastContext";
 
 const AddComment = () => {
   const [open, setOpen] = useState(false);
   const [warning, setWarning] = useState<ReactElement>();
+  const { changeText, changeToggle } = useToast();
 
   const user = useUser();
+
+  window.onkeydown = (e) => {
+    if (e.key === "Escape") {
+      setOpen(false);
+    }
+  };
 
   function handleOpen() {
     if (user) {
@@ -21,6 +29,12 @@ const AddComment = () => {
           Please <Link to={"/login"}>login</Link> to comment
         </div>
       );
+      changeText(
+        <div>
+          Please <Link to={"/login"}>login</Link> to comment
+        </div>
+      );
+      changeToggle(true);
     }
   }
 
