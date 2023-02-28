@@ -20,7 +20,7 @@ function ToastMessage({ text, time }: ToastMessProps) {
 
   return (
     <div>
-      <div className="w-[20rem] h-12 rounded-lg bg-black text-white z-[9999999999] fixed top-20 right-8 font-semibold text-center flex items-center justify-center">
+      <div className="w-[20rem] h-12 rounded-lg bg-black text-white z-[99999999] fixed top-20 right-8 font-semibold text-center flex items-center justify-center">
         {text}
         <GrFormClose
           className="absolute top-1 right-2 text-2xl cursor-pointer z-50 text-white fill-white"

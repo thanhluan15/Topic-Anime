@@ -13,6 +13,19 @@
 .border-behind{
   border-bottom: 0px white solid;
 }
+.border-avatar{
+  border: 6px rgb(24 24 27) solid;
+}
+
+.border-avatar::before{
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  z-index: 20;
+  bottom: 0;
+}
 
 .transition-duration-500 {
   animation: moveToast 2s;

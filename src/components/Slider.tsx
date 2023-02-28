@@ -1,23 +1,56 @@
-import { Virtual } from "swiper";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
-import "swiper/css/virtual";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-export default () => {
-  // Create array with 1000 slides
-  const slides = Array.from({ length: 1000 }).map(
-    (el, index) => `Slide ${index + 1}`
-  );
+import { EffectCoverflow, Pagination, Navigation } from "swiper";
+import Waifu from "./Waifu";
+import { waifuInfo } from "../utils/dummyData";
 
+function App() {
   return (
-    <Swiper modules={[Virtual]} spaceBetween={50} slidesPerView={3} virtual>
-      {slides.map((slideContent, index) => (
-        <SwiperSlide key={slideContent} virtualIndex={index}>
-          {slideContent}
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="container">
+      <h1 className="heading text-3xl text-white">Comment</h1>
+      <Swiper
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={"auto"}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
+        pagination={{ el: ".swiper-pagination", clickable: true }}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        modules={[EffectCoverflow, Pagination, Navigation]}
+        className="swiper_container"
+      >
+        {waifuInfo.map((i, index) => {
+          return (
+            <SwiperSlide className="m-auto">
+              <Waifu
+                src={waifuInfo[index].src}
+                waifuName={waifuInfo[index].waifuName}
+              ></Waifu>
+            </SwiperSlide>
+          );
+        })}
+
+        <div className="slider-controler">
+          <div className="swiper-pagination"></div>
+        </div>
+      </Swiper>
+    </div>
   );
-};
+}
+
+export default App;

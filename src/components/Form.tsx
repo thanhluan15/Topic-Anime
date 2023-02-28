@@ -85,16 +85,17 @@ const Form = () => {
               } flex flex-col`}
             >
               <div className=" h-4 w-4 bg-black rotate-45 transform origin-bottom-left absolute right-12 top-[-13px] "></div>
-              <Link to={"/profile"}>
+              <div className="h-10 mb-2 flex items-center px-3 gap-4 hover:bg-[#1c1c1c] rounded-sm ">
+                <CgProfile className="text-white text-2xl" />
+                <span className="text-white font-semibold">Profile</span>
+              </div>
+              <Link to={"/setting"}>
                 <div className="h-10 mb-2 flex items-center px-3 gap-4 hover:bg-[#1c1c1c] rounded-sm ">
-                  <CgProfile className="text-white text-2xl" />
-                  <span className="text-white font-semibold">Profile</span>
+                  <IoMdSettings className="text-white text-2xl" />
+                  <span className="text-white font-semibold">Setting</span>
                 </div>
               </Link>
-              <div className="h-10 mb-2 flex items-center px-3 gap-4 hover:bg-[#1c1c1c] rounded-sm ">
-                <IoMdSettings className="text-white text-2xl" />
-                <span className="text-white font-semibold">Setting</span>
-              </div>
+
               <div
                 className="h-10 mb-2 flex items-center px-3 gap-4 hover:bg-[#1c1c1c] rounded-sm"
                 onClick={signOut}

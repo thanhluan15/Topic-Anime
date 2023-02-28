@@ -4,7 +4,7 @@ import Login from "./pages/LoginForm";
 import ToastMessage from "./components/Toast";
 import MultiForm from "./pages/MultiForm";
 import { useToast } from "./contexts/ToastContext";
-import Profile from "./pages/Profile";
+import Setting from "./pages/Setting";
 
 interface ToastProps {
   toggle: boolean;
@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MultiForm />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/setting" element={<Setting />} />
       </Routes>
       {toggle ? <ToastMessage text={text} time={3000} /> : <></>}
     </div>
