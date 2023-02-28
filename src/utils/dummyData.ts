@@ -4,7 +4,7 @@ export const waifuInfo = [
     waifuName: "Yui Yuigahama",
     src: "https://i.pinimg.com/236x/a6/9f/a8/a69fa821b0ac46d1fb62bb6f8747ebcc.jpg",
     comment:
-      "Yahallo!. I think I was always charmed by it. That pretty smile she had was something I loved. And when I saw it then... I realized that this relationship was over",
+      "Yahallo!. I think I was always charmed by it. That pretty smile she had was something I loved. And when I saw it then... I realized that this relationship was over.",
   },
   {
     id: 2,
@@ -17,6 +17,12 @@ export const waifuInfo = [
     id: 3,
     waifuName: "Hitori",
     src: "https://i.pinimg.com/236x/db/4d/fe/db4dfe4ad8c188f765e5ecb15125c98f.jpg",
-    comment: "I'm gonna be a star",
+    comment: "I'm gonna be a star.",
+  },
+  {
+    id: 4,
+    waifuName: "Miku Nakano",
+    src: "https://i.pinimg.com/236x/90/29/a2/9029a2eafc1b93fdb11241b57ba56d38.jpg",
+    comment: "I wonder if Futaro knows.",
   },
 ];

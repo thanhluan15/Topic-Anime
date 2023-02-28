@@ -65,7 +65,7 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   console.log(emoji);
 
   return (
-    <div className="w-[20rem] min-h-[10rem] rounded-lg py-8 px-6 bg-[#232323]">
+    <div className="w-[20rem] min-h-[10rem] rounded-lg py-8 px-6 bg-[#232323] border-zinc-400">
       <div className="w-28 h-12 flex gap-4 ">
         <Avatar
           classNames=""

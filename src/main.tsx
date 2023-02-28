@@ -13,7 +13,7 @@ const client = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={client}>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       <AuthProvider>
         <BrowserRouter>
           <ToastProvider>

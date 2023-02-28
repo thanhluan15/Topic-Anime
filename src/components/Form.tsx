@@ -10,6 +10,9 @@ import Button from "./shared/Button";
 import { useToast } from "../contexts/ToastContext";
 import Waifu from "./Waifu";
 import WaifuList from "./WaifuList";
+import { HiOutlineLogout } from "react-icons/hi";
+import { CgProfile } from "react-icons/cg";
+import { IoMdSettings } from "react-icons/io";
 
 const Form = () => {
   const { step, steps, prevPage, nextPage, goToPage } = useMultiForm(
@@ -27,6 +30,7 @@ const Form = () => {
 
   const [currentPage, setCurrentPage] = useState(goToPage(step));
   const { changeText, changeToggle } = useToast();
+  const [openModel, setOpenModel] = useState(false);
   const user = useUser();
 
   // useEffect(() => {
@@ -55,11 +59,16 @@ const Form = () => {
         <h1 className="text-white ml-16 font-bold text-lg">MARU</h1>
         {!user ? (
           <Link to={"/login"}>
-            <Button classNames="bg-red-500 text-white mr-8">Login</Button>
+            <Button classNames="bg-red-500 text-white mr-8 w-20">Login</Button>
           </Link>
         ) : (
-          <div className="flex mr-8 items-center gap-4">
-            <div className="flex items-center gap-2">
+          <div className="flex mr-16 items-center gap-4">
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => {
+                setOpenModel(!openModel);
+              }}
+            >
               <Avatar
                 classNames=""
                 src={user?.user_metadata?.avatar_url}
@@ -70,9 +79,30 @@ const Form = () => {
               </p>
             </div>
 
-            <Button classNames="bg-red-600 text-white rounded-sm" onClick={signOut}>
-              Sign Out
-            </Button>
+            <div
+              className={`w-52 min-h-[6rem] bg-black absolute top-20 right-20 rounded-lg py-4 cursor-pointer px-4  ${
+                openModel ? "" : "hidden"
+              } flex flex-col`}
+            >
+              <div className=" h-4 w-4 bg-black rotate-45 transform origin-bottom-left absolute right-12 top-[-13px] "></div>
+              <Link to={"/profile"}>
+                <div className="h-10 mb-2 flex items-center px-3 gap-4 hover:bg-[#1c1c1c] rounded-sm ">
+                  <CgProfile className="text-white text-2xl" />
+                  <span className="text-white font-semibold">Profile</span>
+                </div>
+              </Link>
+              <div className="h-10 mb-2 flex items-center px-3 gap-4 hover:bg-[#1c1c1c] rounded-sm ">
+                <IoMdSettings className="text-white text-2xl" />
+                <span className="text-white font-semibold">Setting</span>
+              </div>
+              <div
+                className="h-10 mb-2 flex items-center px-3 gap-4 hover:bg-[#1c1c1c] rounded-sm"
+                onClick={signOut}
+              >
+                <HiOutlineLogout className="text-white text-2xl" />
+                <span className="text-white font-semibold">Sign Out</span>
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -89,7 +119,7 @@ const Form = () => {
 
           <div className="m-6">
             <Button
-              classNames="bg-green-500 rounded-sm"
+              classNames="bg-green-500 rounded-sm w-20"
               onClick={() => {
                 prevPage();
                 setCurrentPage(goToPage(step - 1));
@@ -98,7 +128,7 @@ const Form = () => {
               Previous
             </Button>
             <Button
-              classNames="bg-green-500 rounded-sm ml-4"
+              classNames="bg-green-500 rounded-sm ml-4 w-20"
               onClick={() => {
                 nextPage();
                 setCurrentPage(goToPage(step + 1));

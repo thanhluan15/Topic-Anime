@@ -4,13 +4,12 @@ import { GrFormClose } from "react-icons/gr";
 import { ToastProps } from "../types/data";
 import { ToastContext } from "../contexts/ToastContext";
 
-function ToastMessage({
-  text,
-  time,
-}: {
+interface ToastMessProps {
   time: number;
   text: ReactElement | string;
-}) {
+}
+
+function ToastMessage({ text, time }: ToastMessProps) {
   const { toggle, changeToggle } = useContext(ToastContext) as ToastProps;
 
   useEffect(() => {
@@ -35,5 +34,3 @@ function ToastMessage({
 }
 
 export default ToastMessage;
-
-

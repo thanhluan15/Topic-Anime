@@ -99,7 +99,7 @@ function Comment() {
               setContent(e.target.value);
             }}
           />
-          <Button classNames="bg-white mt-3 rounded-lg mx-auto">Submit</Button>
+          <Button classNames="bg-white mt-3 rounded-lg mx-auto w-20 bg-green-500">Submit</Button>
         </form>
       </div>
     </div>
