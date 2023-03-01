@@ -1,10 +1,11 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+// import "swiper/css";
+// import "swiper/css/effect-coverflow";
+// import "swiper/css/pagination";
+// import "swiper/css/navigation";
+import "swiper/swiper.min.css"
 
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
 import Waifu from "./Waifu";
@@ -40,6 +41,7 @@ function App() {
               <Waifu
                 src={waifuInfo[index].src}
                 waifuName={waifuInfo[index].waifuName}
+                comment={waifuInfo[index].comment}
               ></Waifu>
             </SwiperSlide>
           );

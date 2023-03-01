@@ -42,3 +42,7 @@
     top: 0px;
   }
 }
+
+.swiper-slide{
+  width: 320px;
+}
