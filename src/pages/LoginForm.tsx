@@ -36,7 +36,7 @@ const Login = () => {
     }
   }
   return (
-    <div className="w-full h-[625px] bg-white flex rounded-full relative">
+    <div className="w-full h-[768px] bg-white flex rounded-full relative">
       <div className="w-[40%]">
         <img
           className="w-full h-full object-cover"

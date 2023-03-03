@@ -7,9 +7,8 @@ import supabase from "../configs/supabase";
 import { EmojiProps, ToastProps, WaifuProps } from "../types/data";
 import { useUser } from "../contexts/AuthContext";
 import Avatar from "./shared/Avatar";
-import { PostgrestQueryBuilder } from "@supabase/postgrest-js";
-import { EmojiResponseSupabase } from "../types/supabase";
 import { useToast } from "../contexts/ToastContext";
+import { useQuery } from "@tanstack/react-query";
 
 const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   const [toggleIcon, setToggleIcon] = useState(false);
@@ -49,7 +48,7 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
     setEmoji(data);
   }
 
-  // const { data: emoji } = useQuery<any>({
+  // const { data: emoji } = useQuery({
   //   queryKey: ["emoji"],
   //   queryFn: () => {
   //     const { data }: any = supabase.from("sce_reactions").select("*");
@@ -57,7 +56,7 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   //   },
   // });
 
-  // console.log(emoji)
+  console.log(emoji)
 
   // console.log(emoji);
 

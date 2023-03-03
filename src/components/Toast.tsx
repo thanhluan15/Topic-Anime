@@ -3,6 +3,7 @@ import { IconContext } from "react-icons";
 import { GrFormClose } from "react-icons/gr";
 import { ToastProps } from "../types/data";
 import { ToastContext } from "../contexts/ToastContext";
+import { useToast } from "../contexts/ToastContext";
 
 interface ToastMessProps {
   time: number;
@@ -10,7 +11,7 @@ interface ToastMessProps {
 }
 
 function ToastMessage({ text, time }: ToastMessProps) {
-  const { toggle, changeToggle } = useContext(ToastContext) as ToastProps;
+  const { toggle, changeToggle } = useToast();
 
   useEffect(() => {
     setTimeout(async () => {
