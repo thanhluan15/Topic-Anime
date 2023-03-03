@@ -33,6 +33,8 @@ const Form = () => {
   const [openModel, setOpenModel] = useState(false);
   const user = useUser();
 
+  console.log(user)
+
   // useEffect(() => {
   //   if (user) {
   //     changeText(<div>Login Successfull</div>);
@@ -51,7 +53,7 @@ const Form = () => {
     changeToggle(true);
   }
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="w-full">

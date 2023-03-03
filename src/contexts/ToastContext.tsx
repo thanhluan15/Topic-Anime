@@ -7,11 +7,11 @@ import React, {
 } from "react";
 import { ToastProps } from "../types/data";
 
-export const ToastContext = createContext({});
+export const ToastContext = createContext<ToastProps>(null!);
 
 function ToastProvider({ children }: { children: ReactNode }) {
   const [toggle, setToggle] = useState(false);
-  const [text, setText] = useState<ReactElement>();
+  const [text, setText] = useState<ReactElement>(<></>);
 
   function changeToggle(toggle: boolean) {
     setToggle(toggle);
@@ -29,7 +29,7 @@ function ToastProvider({ children }: { children: ReactNode }) {
 }
 
 export const useToast = () => {
-  return useContext(ToastContext) as ToastProps;
+  return useContext<ToastProps>(ToastContext);
 };
 
 export default ToastProvider;

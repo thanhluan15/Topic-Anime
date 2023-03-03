@@ -1,3 +1,4 @@
+import { User } from "@supabase/supabase-js";
 import { ReactElement } from "react";
 
 export interface WaifuProps {
@@ -8,7 +9,7 @@ export interface WaifuProps {
 }
 
 export interface ToastProps {
-  toggle?: boolean;
+  toggle: boolean;
   changeToggle: (toggle: boolean) => void;
   text: ReactElement;
   changeText: (text: ReactElement) => void;
@@ -20,4 +21,23 @@ export interface EmojiProps {
   label: string;
   url: string;
   metadata?: string;
+}
+
+export type AdditionalUser = User & {
+  userName: string;
+  avatar?: string;
+  createdAt: string;
+  email: string;
+};
+
+export interface Profile {
+  bio: string;
+  userId?: string;
+}
+
+export interface Comment {
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  userId?: string;
 }

@@ -3,9 +3,7 @@ import { AiOutlineHeart, AiFillHeart, AiFillCheckCircle } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { IconContext } from "react-icons";
-import { ToastContext } from "../contexts/ToastContext";
 import supabase from "../configs/supabase";
-import { useQuery } from "@tanstack/react-query";
 import { EmojiProps, ToastProps, WaifuProps } from "../types/data";
 import { useUser } from "../contexts/AuthContext";
 import Avatar from "./shared/Avatar";
@@ -16,7 +14,6 @@ import { useToast } from "../contexts/ToastContext";
 const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   const [toggleIcon, setToggleIcon] = useState(false);
   const [emoji, setEmoji] = useState() as EmojiProps[];
-  const [toggleComment, setToggleComment] = useState(false) ;
   const { toggle, changeToggle, changeText } = useToast();
 
   // console.log(postgrest.from("sce_reactions").select("*"))
@@ -62,7 +59,7 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
 
   // console.log(emoji)
 
-  console.log(emoji);
+  // console.log(emoji);
 
   return (
     <div className="w-[20rem] min-h-[10rem] rounded-lg py-8 px-6 bg-[#232323] border-zinc-400">
