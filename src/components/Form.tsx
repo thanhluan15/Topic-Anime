@@ -13,6 +13,8 @@ import WaifuList from "./WaifuList";
 import { HiOutlineLogout } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 import { IoMdSettings } from "react-icons/io";
+import NextButton from "./shared/NextButton";
+import PrevButton from "./shared/PrevButton";
 
 const Form = () => {
   const { step, steps, prevPage, nextPage, goToPage } = useMultiForm(
@@ -33,18 +35,7 @@ const Form = () => {
   const [openModel, setOpenModel] = useState(false);
   const user = useUser();
 
-  console.log(user)
-
-  // useEffect(() => {
-  //   if (user) {
-  //     changeText(<div>Login Successfull</div>);
-  //     changeToggle(true);
-  //   }
-  //   else{
-  //     changeText(<></>)
-  //     changeToggle(false);
-  //   }
-  // }, [user]);
+  console.log(user);
 
   async function signOut() {
     await supabase.auth.signOut();
@@ -72,7 +63,7 @@ const Form = () => {
               }}
             >
               <Avatar
-                classNames=""
+                classNames="w-[3rem] h-[3rem]"
                 src={user?.user_metadata?.avatar_url}
                 alt=""
               />
@@ -120,25 +111,21 @@ const Form = () => {
             </div>
           </div>
 
-          <div className="m-6">
-            <Button
-              classNames="bg-green-500 rounded-sm w-20"
+          <div className="m-6 flex gap-3">
+            <PrevButton
+              classNames=""
               onClick={() => {
                 prevPage();
                 setCurrentPage(goToPage(step - 1));
               }}
-            >
-              Previous
-            </Button>
-            <Button
-              classNames="bg-green-500 rounded-sm ml-4 w-20"
+            ></PrevButton>
+            <NextButton
+              classNames=""
               onClick={() => {
                 nextPage();
                 setCurrentPage(goToPage(step + 1));
               }}
-            >
-              Next
-            </Button>
+            ></NextButton>
           </div>
         </div>
         <AddComment />

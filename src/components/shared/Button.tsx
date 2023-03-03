@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
 
-interface ButtonProps {
-  children?: ReactNode | string;
+export interface ButtonProps {
+  children?: ReactElement | string;
   classNames: string;
   onClick?: () => void;
 }

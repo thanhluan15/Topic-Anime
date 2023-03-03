@@ -37,6 +37,7 @@ const AddComment = () => {
       changeToggle(true);
     }
   }
+  console.log(open);
 
   return (
     <div className="flex gap-10 relative">
@@ -52,8 +53,8 @@ const AddComment = () => {
         </IconContext.Provider>
       </div>
       {open ? (
-        <div className="absolute right-52  z-[300] ">
-          <Comment />
+        <div className="absolute right-52 z-[300] ">
+          <Comment onClick={() => setOpen(!open)} openForm={open} />
         </div>
       ) : (
         <>{warning}</>

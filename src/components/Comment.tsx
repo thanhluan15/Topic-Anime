@@ -5,19 +5,23 @@ import React, {
   useRef,
   useState,
 } from "react";
-import Button from "./shared/Button";
 import { waifuInfo } from "../utils/dummyData";
 import { useUser } from "../contexts/AuthContext";
-import { AiFillCheckCircle } from "react-icons/ai";
+import { AiFillCheckCircle, AiOutlineSend } from "react-icons/ai";
 import { useToast } from "../contexts/ToastContext";
+import CusTomButton from "./shared/CustomButton";
+import { RiDeleteBack2Line } from "react-icons/ri";
 
-function Comment() {
+function Comment({
+  openForm,
+  onClick,
+}: {
+  openForm: boolean;
+  onClick: () => void;
+}) {
   const [username, setUserName] = useState("");
   const [content, setContent] = useState("");
   const { changeToggle, changeText } = useToast();
-
-  const [open, setOpen] = useState(false);
-  const commentRef = useRef<HTMLDivElement>();
 
   const user = useUser();
 
@@ -31,7 +35,6 @@ function Comment() {
     if (e.key === "Enter") {
       handleForm();
       e.preventDefault();
-
     }
   };
 
@@ -65,22 +68,22 @@ function Comment() {
   return (
     <div className="w-full">
       <div
-        className={`w-[500px] min-h-[300px] border-frame bg-[#232323] z-50 py-4 px-10 rounded-lg ${
-          open ? "hidden" : ""
-        }`}
+        className={`w-[500px] min-h-[300px] border-frame bg-[#232323] z-50 py-4 px-10 rounded-lg `}
       >
         <form
           onSubmit={handleSubmit}
-          onClick={() => {
-            setOpen(false);
-            console.log("axxx");
-          }}
           method="post"
-          className="flex flex-col justify-center  gap-2"
+          className="flex flex-col justify-center gap-2"
         >
-          <label className="text-white font-semibold" htmlFor="name">
-            Name
-          </label>
+          <div className="flex justify-between">
+            <label className="text-white font-semibold" htmlFor="name">
+              Name
+            </label>
+            <RiDeleteBack2Line
+              className={`text-3xl text-white cursor-pointer `}
+              onClick={onClick}
+            />
+          </div>
           <input
             className="outline-none w-full h-4 p-4 rounded-md"
             type="text"
@@ -99,7 +102,9 @@ function Comment() {
               setContent(e.target.value);
             }}
           />
-          <Button classNames="bg-white mt-3 rounded-lg mx-auto w-20 bg-green-500">Submit</Button>
+          <CusTomButton classNames="w-10 rounded text-white bg-green-500 rounded-sm mx-auto flex justify-center items-center text-2xl">
+            <AiOutlineSend />
+          </CusTomButton>
         </form>
       </div>
     </div>

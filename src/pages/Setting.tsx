@@ -7,6 +7,7 @@ import { useUser } from "../contexts/AuthContext";
 import MultiForm from "./MultiForm";
 import Sidebar from "../components/Sidebar";
 import { Link } from "react-router-dom";
+import Avatar from "../components/shared/Avatar";
 
 const Setting = () => {
   const user = useUser();
@@ -49,8 +50,8 @@ const Setting = () => {
             <div className="w-[380px] h-[380px] rounded-lg bg-zinc-900 mt-4 relative">
               <div className="w-full pb-20 bg-green-500 rounded-t-lg"></div>
               <div className="w-24 h-24 rounded-full absolute top-8 left-6">
-                <img
-                  className="rounded-full border-avatar"
+                <Avatar
+                  classNames="rounded-full border-avatar w-24 h-24"
                   src={user?.user_metadata?.avatar_url}
                   alt="Avatar"
                 />
@@ -72,7 +73,9 @@ const Setting = () => {
             </div>
           </div>
         </div>
-        <Link to={"/"}><Button classNames="w-28 bg-green-500 mt-6">Back to Home </Button></Link>
+        <Link to={"/"}>
+          <Button classNames="w-28 bg-green-500 mt-6">Back to Home </Button>
+        </Link>
       </div>
     </div>
   );

@@ -9,16 +9,16 @@ function useMultiForm(steps: ReactElement[]) {
   }
 
   function nextPage() {
-    if (step > steps.length - 2) return setStep(steps.length - 1);
+    if (step >= steps.length - 2) return setStep(steps.length -1);
     return setStep((step) => step + 1);
   }
 
   function goToPage(step: number) {
     if (step <= 0) {
-      return steps[0];
+      return steps[steps.length -1];
     }
     if (step >= steps.length - 1) {
-      return steps[steps.length - 1];
+      return steps[0];
     }
     return steps[step];
   }

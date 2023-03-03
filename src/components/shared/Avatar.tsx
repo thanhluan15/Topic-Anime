@@ -9,7 +9,7 @@ interface Avatar {
 const Avatar = ({ src, classNames, ...props }: Avatar) => {
   return (
     <img
-      className={`w-12 h-12 rounded-full ${classNames}`}
+      className={`w-20 h-12 rounded-full object-cover object-center ${classNames}`}
       src={src}
       alt="Avatar"
     />
