@@ -57,7 +57,7 @@ const AddComment = () => {
           <Comment onClick={() => setOpen(!open)} openForm={open} />
         </div>
       ) : (
-        <>{warning}</>
+        <React.Fragment>{warning}</React.Fragment>
       )}
     </div>
   );
