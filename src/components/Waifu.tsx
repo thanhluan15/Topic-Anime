@@ -12,10 +12,8 @@ import { useQuery } from "@tanstack/react-query";
 
 const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   const [toggleIcon, setToggleIcon] = useState(false);
-  const [emoji, setEmoji] = useState() as EmojiProps[];
+  const [emoji, setEmoji] = useState<EmojiProps[]>(null!);
   const { toggle, changeToggle, changeText } = useToast();
-
-  // console.log(postgrest.from("sce_reactions").select("*"))
 
   useEffect(() => {
     getEmojis();
@@ -45,7 +43,7 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
 
   async function getEmojis() {
     const data: any = await supabase.from("sce_reactions").select("*");
-    setEmoji(data);
+    setEmoji(data?.data);
   }
 
   // const { data: emoji } = useQuery({
@@ -56,7 +54,7 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
   //   },
   // });
 
-  console.log(emoji)
+  console.log(emoji);
 
   // console.log(emoji);
 
@@ -92,13 +90,10 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
         </IconContext.Provider>
 
         <div className="flex gap-3">
-          {emoji?.data?.map((i: EmojiProps, index: number) => {
+          {emoji?.map((i: EmojiProps, index: number) => {
             return (
               <div key={index}>
-                <img
-                  className="w-5 h-5 cursor-pointer"
-                  src={i?.url}
-                />
+                <img className="w-5 h-5 cursor-pointer" src={i?.url} />
               </div>
             );
           })}

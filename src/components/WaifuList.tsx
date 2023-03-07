@@ -1,8 +1,7 @@
-
 import { waifuInfo } from "../utils/dummyData";
 import Waifu from "./Waifu";
 
-const WaifuList = () => {
+const WaifuList = <T extends JSX.Element>() => {
   return (
     <div className="flex gap-5 mt-10 mb-10 flex-wrap relative">
       {waifuInfo.map((i, index) => {
