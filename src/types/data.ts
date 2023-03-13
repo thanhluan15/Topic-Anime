@@ -6,6 +6,7 @@ export interface WaifuProps {
   waifuName: string | undefined;
   src?: string;
   comment?: string;
+  deleteComment?:()=> void;
 }
 
 export interface ToastProps {

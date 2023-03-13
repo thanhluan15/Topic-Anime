@@ -26,6 +26,7 @@ const Form = () => {
           waifuName={i.waifuName}
           src={i.src}
           comment={i.comment}
+          // onClick = {}
         />
       );
     })
