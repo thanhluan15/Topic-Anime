@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { AiOutlineHeart, AiFillHeart, AiFillCheckCircle } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart, AiFillCheckCircle, AiFillDelete, AiOutlineDelete } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { IconContext } from "react-icons";
@@ -10,7 +10,7 @@ import Avatar from "./shared/Avatar";
 import { useToast } from "../contexts/ToastContext";
 import { useQuery } from "@tanstack/react-query";
 
-const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
+const Waifu = ({ waifuName, src, comment,id, ...props }: WaifuProps) => {
   const [toggleIcon, setToggleIcon] = useState(false);
   const [emoji, setEmoji] = useState<EmojiProps[]>(null!);
   const { toggle, changeToggle, changeText } = useToast();
@@ -56,10 +56,14 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
 
   console.log(emoji);
 
+  const handleDelete = () =>{
+
+  }
+
   // console.log(emoji);
 
   return (
-    <div className="w-[20rem] min-h-[10rem] rounded-lg py-8 px-6 bg-[#232323] border-zinc-400">
+    <div className="w-[20rem] min-h-[10rem] rounded-lg py-8 px-6 bg-[#232323] border-zinc-400 relative">
       <div className="w-28 h-12 flex gap-4 ">
         <Avatar
           classNames=""
@@ -73,6 +77,7 @@ const Waifu = ({ waifuName, src, comment, ...props }: WaifuProps) => {
           @{waifuName}
         </span>
       </div>
+      <AiOutlineDelete onClick={()=> handleDelete()} size={25} color={"white"} className="absolute right-5 top-12 font-bold text-2xl" />
       <div className="mt-3 text-slate-300">"{comment}" </div>
       <div className="mt-4 flex gap-3">
         <IconContext.Provider value={{ color: "white", size: "25px" }}>

@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { Fragment, useContext, useRef, useState } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import Login from "./pages/LoginForm";
 import ToastMessage from "./components/Toast";
@@ -23,7 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/setting" element={<Setting />} />
       </Routes>
-      {toggle ? <ToastMessage text={text} time={3000} /> : <></>}
+      {toggle ? <ToastMessage text={text} time={3000} /> : <Fragment></Fragment>}
     </div>
   );
 }

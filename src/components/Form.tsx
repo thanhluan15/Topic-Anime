@@ -22,9 +22,10 @@ const Form = () => {
       return (
         <Waifu
           key={index}
-          waifuName={waifuInfo[index].waifuName}
-          src={waifuInfo[index].src}
-          comment={waifuInfo[index].comment}
+          id = {i.id}
+          waifuName={i.waifuName}
+          src={i.src}
+          comment={i.comment}
         />
       );
     })
@@ -71,6 +72,7 @@ const Form = () => {
                 {user?.user_metadata?.name}
               </p>
             </div>
+            
 
             <div
               className={`w-52 min-h-[6rem] bg-black absolute top-20 right-20 rounded-lg py-4 cursor-pointer px-4  ${
