@@ -77,7 +77,7 @@ const Waifu = ({ waifuName, src, comment,id, ...props }: WaifuProps) => {
           @{waifuName}
         </span>
       </div>
-      <AiOutlineDelete onClick={()=> handleDelete()} size={25} color={"white"} className="absolute right-5 top-12 font-bold text-2xl" />
+      <AiOutlineDelete onClick={()=> handleDelete()} size={25} color={"white"} className="absolute right-5 top-12 font-bold text-2xl cursor-pointer" />
       <div className="mt-3 text-slate-300">"{comment}" </div>
       <div className="mt-4 flex gap-3">
         <IconContext.Provider value={{ color: "white", size: "25px" }}>
