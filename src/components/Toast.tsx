@@ -1,3 +1,5 @@
+/** @format */
+
 import { ReactElement, useContext, useEffect, useRef } from "react";
 import { IconContext } from "react-icons";
 import { GrFormClose } from "react-icons/gr";
@@ -14,10 +16,14 @@ function ToastMessage({ text, time }: ToastMessProps) {
   const { toggle, changeToggle } = useToast();
 
   useEffect(() => {
-    setTimeout(async () => {
+    const idTimeOut = setTimeout(async () => {
       changeToggle(false);
     }, time);
-  }, [toggle]);
+    return () => {
+      clearTimeout(idTimeOut);
+    };
+  }, [toggle]); 
+  
 
   return (
     <div>
